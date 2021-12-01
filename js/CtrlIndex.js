@@ -53,8 +53,7 @@ function htmlFila(doc) {
   const data = doc.data();
   const titulo = cod(data.titulo);
   const autor = cod(data.autor);
-  const img = cod(
-    await urlStorage(doc.id));
+  const img = cod(urlStorage(doc.id));
   const parámetros =
     new URLSearchParams();
   parámetros.append("id", doc.id);
