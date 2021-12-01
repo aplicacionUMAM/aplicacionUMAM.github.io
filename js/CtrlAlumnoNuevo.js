@@ -47,7 +47,7 @@ async function guarda(evt) {
       formData.get("obra");
     const fecha = getString(formData, "fecha").trim();
     const f = new Date();
-    const nombre = f.getDate() + f.getDay + f.getFullYear + f.getMinutes + f.getTime + usu;
+    const nombre = f.toISOString() + usu;
     if (obra instanceof File &&
       obra.size > 0) {
       await storage.
