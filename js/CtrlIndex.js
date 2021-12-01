@@ -26,7 +26,7 @@ const daoUsuario = firestore.
   collection("Usuario");
 
 getAuth().onAuthStateChanged(
-  protege, muestraError);
+  consulta, muestraError);
 
 /** @param {import(
     "../lib/tiposFire.js").User}
@@ -84,6 +84,7 @@ async function htmlFila(doc) {
     await urlStorage(doc.id));
   const titulo = cod(data.titulo);
   const autor = cod(data.autor);
+  const fecha = cod(data.fecha);
   return (/* html */
     `<div class="col">
           <div class="card h-100">
@@ -93,7 +94,7 @@ async function htmlFila(doc) {
               <p class="card-text"><b>Autor:</b>${autor}</p>
             </div>
             <div class="card-footer">
-              <small class="text-muted">Fecha: </small>
+              <small class="text-muted">Fecha: ${fecha}</small>
             </div>
           </div>
         </div>`);
