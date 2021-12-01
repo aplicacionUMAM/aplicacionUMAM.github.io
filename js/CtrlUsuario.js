@@ -54,7 +54,7 @@ async function busca() {
     if (doc.exists) {
       const data = doc.data();
       forma.cue.value = id || "";
-      img.src =
+      avatarusu.src =
         await urlStorage(id);
       checksRoles(
         listaRoles, data.rolIds);
