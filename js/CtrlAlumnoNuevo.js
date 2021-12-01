@@ -20,7 +20,7 @@ const daoAlumno =
 const forma = document["forma"];
 getAuth().onAuthStateChanged(
   protege, muestraError);
-
+const storage = getStorage();
 /** @param {import(
     "../lib/tiposFire.js").User}
     usuario */
