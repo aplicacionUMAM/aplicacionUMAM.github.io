@@ -1,6 +1,7 @@
 import {
   getAuth,
-  getFirestore
+  getFirestore,
+  getStorage
 } from "../lib/fabrica.js";
 import {
   getString,
@@ -12,7 +13,7 @@ import {
 import {
   tieneRol
 } from "./seguridad.js";
-
+const storage = getStorage();
 const daoAlumno =
   getFirestore().
     collection("Alumno");
@@ -20,7 +21,6 @@ const daoAlumno =
 const forma = document["forma"];
 getAuth().onAuthStateChanged(
   protege, muestraError);
-const storage = getStorage();
 /** @param {import(
     "../lib/tiposFire.js").User}
     usuario */
