@@ -5,7 +5,10 @@
 
 /**
  * @typedef {Object} Alumno
- * @property {string} nombre
+ * @property {string} titulo
+ * @property {string} autor
+ * @property {string} fecha
+ * @property {string} usu
  */
 
 /**
