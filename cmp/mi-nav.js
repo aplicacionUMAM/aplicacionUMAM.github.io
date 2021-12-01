@@ -24,7 +24,7 @@ class MiNav extends HTMLElement {
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" href="index.html.html"><i class="bi bi-images"></i> Galería</a>
+                <a class="nav-link active" href="index.html"><i class="bi bi-images"></i> Galería</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" href="acerca-de.html"><i class="bi bi-info-circle"></i> Acerca de</a>
