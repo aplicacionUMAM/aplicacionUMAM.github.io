@@ -1,5 +1,6 @@
 // @ts-nocheck
 import {
+  getAuth,
   getFirestore
 } from "../lib/fabrica.js";
 import {
@@ -7,8 +8,8 @@ import {
   muestraError
 } from "../lib/util.js";
 import {
-  urlStorage
-} from "../lib/storage.js";
+  tieneRol
+} from "./seguridad.js";
 const firestore = getFirestore();
 /** @type {HTMLUListElement} */
 const lista = document.
@@ -16,8 +17,20 @@ const lista = document.
 const daoAlumno = firestore.
   collection("Alumno");
 
+getAuth().
+  onAuthStateChanged(
+    protege, muestraError);
 
-async function consulta() {
+/** @param {import(
+    "../lib/tiposFire.js").User}
+    usuario */
+async function protege(usuario) {
+  if (1===1) {
+    consulta();
+  }
+}
+
+function consulta() {
   daoAlumno.
     orderBy("titulo")
     .onSnapshot(
