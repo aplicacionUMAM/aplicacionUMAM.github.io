@@ -33,7 +33,6 @@ async function protege(usuario) {
       usuario.email || "";
   }
 }
-
 /** @param {Event} evt */
 async function guarda(evt) {
   try {
@@ -42,12 +41,18 @@ async function guarda(evt) {
       new FormData(forma);  
     const titulo = getString(formData, "titulo").trim();
     const autor = getString(formData, "autor").trim();
-    const usuario = getString(formData, "usu").trim();
+    const usu = getString(formData, "usu").trim();
     const obra =
       formData.get("obra");
     const fecha = getString(formData, "fecha").trim();
-    const nombre = fecha + usuario;
+    const nombre = fecha + usu;
     await subeStorage(nombre, obra);
+    if (archivo instanceof File &&
+      archivo.size > 0) {
+      await storage.
+        ref(nombre).
+        put(obra);
+    }
     /**
      * @type {
         import("./tipos.js").
