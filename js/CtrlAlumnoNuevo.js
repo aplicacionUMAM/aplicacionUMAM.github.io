@@ -61,7 +61,7 @@ async function guarda(evt) {
       set({
         titulo,
         autor,
-        usuario,
+        usu,
         fecha 
       });
     muestraAlumnos();
