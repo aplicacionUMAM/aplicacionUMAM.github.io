@@ -1,42 +1,51 @@
-// @ts-nocheck
 import {
   getFirestore
 } from "../lib/fabrica.js";
 import {
+  urlStorage
+} from "../lib/storage.js";
+import {
   cod,
   muestraError
 } from "../lib/util.js";
-import {
-  urlStorage
-} from "../lib/storage.js";
-const firestore = getFirestore();
+
 /** @type {HTMLUListElement} */
+// @ts-ignore
 const lista = document.
   querySelector("#lista");
+const firestore = getFirestore();
 const daoAlumno = firestore.
   collection("Alumno");
 
 
 async function consulta() {
-  daoAlumno.
-    orderBy("titulo")
-    .onSnapshot(
-      htmlLista, errConsulta);
+  daoAlumno.onSnapshot(
+    htmlLista, errConsulta);
 }
 
 /**
  * @param {import(
     "../lib/tiposFire.js").
     QuerySnapshot} snap */
-function htmlLista(snap) {
+async function htmlLista(snap) {
   let html = "";
   if (snap.size > 0) {
-    snap.forEach(doc =>
-      html += htmlFila(doc));
+    /** @type {
+          Promise<string>[]} */
+    let usuarios = [];
+    snap.forEach(doc => usuarios.
+      push(htmlFila(doc)));
+    const htmlFilas =
+      await Promise.all(usuarios);
+    /* Junta el todos los
+     * elementos del arreglo en
+     * una cadena. */
+    html += htmlFilas.join("");
   } else {
     html += /* html */
       `<li class="vacio">
-        -- No hay obras registradas. --
+        -- No hay Obras
+        registradas. --
       </li>`;
   }
   lista.innerHTML = html;
@@ -46,23 +55,28 @@ function htmlLista(snap) {
  * @param {import(
     "../lib/tiposFire.js").
     DocumentSnapshot} doc */
-function htmlFila(doc) {
+async function htmlFila(doc) {
   /**
    * @type {import("./tipos.js").
-                  Alumno} */
+                      Usuario} */
   const data = doc.data();
-  const titulo = cod(data.titulo);
-  const autor = cod(data.autor);
+  const img = cod(
+    await urlStorage(doc.id));
   const parámetros =
     new URLSearchParams();
   parámetros.append("id", doc.id);
-  return ( /* html */
+  return (/* html */
     `<li>
-        <strong class="primario">
-          Título: ${titulo} Autor: ${autor}
-        </strong>
+      <a class="fila conImagen"
+          href=${img}">
+        <span class="marco">
+          <img src="${img}"
+            alt="Falta Obra">
+        </span>
+      </a>
     </li>`);
 }
+
 
 /** @param {Error} e */
 function errConsulta(e) {
