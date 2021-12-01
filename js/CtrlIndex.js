@@ -1,11 +1,15 @@
 // @ts-nocheck
 import {
+  getAuth,
   getFirestore
 } from "../lib/fabrica.js";
 import {
   cod,
   muestraError
 } from "../lib/util.js";
+import {
+  tieneRol
+} from "./seguridad.js";
 import {
   urlStorage
 } from "../lib/storage.js";
@@ -16,8 +20,21 @@ const lista = document.
 const daoAlumno = firestore.
   collection("Alumno");
 
+getAuth().
+  onAuthStateChanged(
+    protege, muestraError);
 
-async function consulta() {
+/** @param {import(
+    "../lib/tiposFire.js").User}
+    usuario */
+async function protege(usuario) {
+  if (tieneRol(usuario,
+    ["Artista"])) {
+    consulta();
+  }
+}
+
+function consulta() {
   daoAlumno.
     orderBy("titulo")
     .onSnapshot(
@@ -41,7 +58,6 @@ function htmlLista(snap) {
   }
   lista.innerHTML = html;
 }
-
 /**
  * @param {import(
     "../lib/tiposFire.js").
