@@ -15,6 +15,9 @@
 .fila {
   display: block;
   padding: 1rem;
+  width: 90%;
+  margin: 0.5rem auto;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.6);
 }
 
 a.fila:active {
