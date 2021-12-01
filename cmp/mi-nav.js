@@ -14,7 +14,7 @@ class MiNav extends HTMLElement {
     this.innerHTML = /* html */
       `<nav class="navbar navbar-expand-lg navbar navbar navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="galeria.html">
             <img src="favicon.ico" alt="" width="30" height="24" class="d-inline-block align-text-top">
             Aplicación WEB UMAM
           </a>
@@ -24,7 +24,7 @@ class MiNav extends HTMLElement {
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" href="index.html"><i class="bi bi-images"></i> Galería</a>
+                <a class="nav-link active" href="galeria.html"><i class="bi bi-images"></i> Galería</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" href="acerca-de.html"><i class="bi bi-info-circle"></i> Acerca de</a>
@@ -32,7 +32,7 @@ class MiNav extends HTMLElement {
               
               
               <li class="nav-item">
-                <a class="nav-link active" href="sesion.html"><i class="bi bi-person-bounding-box"></i> Sesión</a>
+                <a class="nav-link active" href="index.html"><i class="bi bi-person-bounding-box"></i> Sesión</a>
               </li>
             </ul>
           </div>
