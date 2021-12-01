@@ -61,7 +61,7 @@ class MiNav extends HTMLElement {
           if (roles.has("Artista")) {
             html += /* html */
               `<li class="nav-item">
-                  <a class="nav-link active" href="obras.html"><i class="bi bi-droplet-half"></i> Obras</a>
+                  <a class="nav-link active" href="alumnos.html"><i class="bi bi-droplet-half"></i> Obras</a>
               </li>`;
           }
           /* Enlaces para solo
