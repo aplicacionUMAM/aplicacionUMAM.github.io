@@ -14,9 +14,8 @@ import {
 /** @type {HTMLUListElement} */
 const lista = document.
   querySelector("#lista");
-const daoAlumno =
-  getFirestore().
-    collection("Alumno");
+const daoAlumno = firestore.
+  collection("Alumno");
 
 getAuth().
   onAuthStateChanged(
@@ -80,7 +79,7 @@ function htmlFila(doc) {
       <a class="fila" href=
   "alumno.html?${parámetros}">
         <strong class="primario">
-          ${titulo} - ${autor} - ${dformat}
+          ${titulo} ${autor}
         </strong>
       </a>
      
@@ -92,4 +91,3 @@ function errConsulta(e) {
   muestraError(e);
   consulta();
 }
-
