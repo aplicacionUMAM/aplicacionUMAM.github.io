@@ -46,15 +46,13 @@ function htmlLista(snap) {
  * @param {import(
     "../lib/tiposFire.js").
     DocumentSnapshot} doc */
-async function htmlFila(doc) {
+function htmlFila(doc) {
   /**
    * @type {import("./tipos.js").
                   Alumno} */
   const data = doc.data();
   const titulo = cod(data.titulo);
   const autor = cod(data.autor);
-  const img = cod(
-    await urlStorage(doc.id));
   const parámetros =
     new URLSearchParams();
   parámetros.append("id", doc.id);
