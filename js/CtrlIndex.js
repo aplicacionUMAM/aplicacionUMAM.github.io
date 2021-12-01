@@ -72,7 +72,7 @@ function htmlFila(doc) {
   const parámetros =
     new URLSearchParams();
   const img = cod(
-    await urlStorage(doc.id));
+    urlStorage(doc.id));
   parámetros.append("id", doc.id);
   return ( /* html */
     `
