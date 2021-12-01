@@ -13,9 +13,6 @@ import {
 import {
   tieneRol
 } from "./seguridad.js";
-import {
-  getStorage
-} from "./fabrica.js";
 const storage = getStorage();
 const daoAlumno =
   getFirestore().
