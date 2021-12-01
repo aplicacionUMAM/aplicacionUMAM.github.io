@@ -10,7 +10,7 @@ import {
 import {
   tieneRol
 } from "./seguridad.js";
-
+const firestore = getFirestore();
 /** @type {HTMLUListElement} */
 const lista = document.
   querySelector("#lista");
