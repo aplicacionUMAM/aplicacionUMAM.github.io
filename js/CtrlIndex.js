@@ -7,8 +7,8 @@ import {
   muestraError
 } from "../lib/util.js";
 import {
-  tieneRol
-} from "./seguridad.js";
+  urlStorage
+} from "../lib/storage.js";
 const firestore = getFirestore();
 /** @type {HTMLUListElement} */
 const lista = document.
@@ -16,16 +16,8 @@ const lista = document.
 const daoAlumno = firestore.
   collection("Alumno");
 
-/** @param {import(
-    "../lib/tiposFire.js").User}
-    usuario */
-async function protege(usuario) {
-  if (1===1) {
-    consulta();
-  }
-}
 
-function consulta() {
+async function consulta() {
   daoAlumno.
     orderBy("titulo")
     .onSnapshot(
@@ -61,7 +53,7 @@ function htmlFila(doc) {
   const data = doc.data();
   const titulo = cod(data.titulo);
   const autor = cod(data.autor);
-  const img = cod(urlStorage(doc.id));
+  const img = cod(await urlStorage(doc.id));
   const parámetros =
     new URLSearchParams();
   parámetros.append("id", doc.id);
