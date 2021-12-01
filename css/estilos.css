@@ -4,7 +4,6 @@ body {display: inline-block; text-align: left; width: 100%;}
 .ok{background-color: green; color: white; font-weight:bold; border-radius: 5px; border: none; margin: auto; padding: 0.5em; box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.6)}
 img{border: 1.5px solid outset; }
 label, legend {font-weight: bold}
-*:required {border: thin solid blue}
 input{padding: 0.5em;}
 section{width: 100%; margin: auto; padding: 1rem;}
 .herramientas {
