@@ -62,7 +62,7 @@ function htmlLista(snap) {
  * @param {import(
     "../lib/tiposFire.js").
     DocumentSnapshot} doc */
-function htmlFila(doc) {
+async function htmlFila(doc) {
   /**
    * @type {import("./tipos.js").
                   Alumno} */
@@ -72,7 +72,7 @@ function htmlFila(doc) {
   const parámetros =
     new URLSearchParams();
   const img = cod(
-    urlStorage(doc.id));
+    await urlStorage(doc.id));
   parámetros.append("id", doc.id);
   return ( /* html */
     `
