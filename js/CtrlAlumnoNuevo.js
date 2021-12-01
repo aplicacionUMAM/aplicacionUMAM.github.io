@@ -12,6 +12,9 @@ import {
 import {
   tieneRol
 } from "./seguridad.js";
+import {
+  subeStorage
+} from "../lib/storage.js";
 
 const daoAlumno =
   getFirestore().
@@ -26,7 +29,7 @@ getAuth().onAuthStateChanged(
     usuario */
 async function protege(usuario) {
   if (tieneRol(usuario,
-    ["Administrador"])) {
+    ["Artista"])) {
     forma.addEventListener(
       "submit", guarda);
   }
@@ -37,21 +40,20 @@ async function guarda(evt) {
   try {
     evt.preventDefault();
     const formData =
-      new FormData(forma);
-    const matricula = getString(
-        formData, "matricula").trim();  
-    const nombre = getString(formData, "nombre").trim();
-    const telefono = getString(formData, "telefono").trim();
-    const grupo = getString(formData, "grupo").trim();
+      new FormData(forma);  
+    const titulo = getString(formData, "titulo").trim();
+    const autor = getString(formData, "autor").trim();
+    const obra =
+      formData.get("obra");
+    await subeStorage(id, obra);
     const fecha = getString(formData, "fecha").trim();
     /**
      * @type {
         import("./tipos.js").
                 Alumno} */
     const modelo = {
-      matricula,
-      nombre,
-      telefono,
+      titulo,
+      autor,
       grupo,
       fecha 
     };
@@ -63,3 +65,23 @@ async function guarda(evt) {
   }
 }
 
+/** Muestra los datos del usuario
+ * o manda a iniciar sesión en
+ * caso de que no haya empezado.
+ * @param {import(
+    "../lib/tiposFire").
+    User} usuario modelo con las
+ *    características del usuario
+ *    o null si no ha iniciado
+ *    sesión. */
+    async function
+    muestraCorreo(usuario) {
+    if (usuario && usuario.email) {
+      // Usuario aceptado.
+      forma.usuario.value =
+        usuario.email || "";
+    } else {
+      // No ha iniciado sesión.
+      iniciaSesión();
+    }
+  }
