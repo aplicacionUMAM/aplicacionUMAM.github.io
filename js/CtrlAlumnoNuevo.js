@@ -29,6 +29,8 @@ async function protege(usuario) {
     ["Artista"])) {
     forma.addEventListener(
       "submit", guarda);
+    forma.usu.value =
+      usuario.email || "";
   }
 }
 
@@ -40,7 +42,7 @@ async function guarda(evt) {
       new FormData(forma);  
     const titulo = getString(formData, "titulo").trim();
     const autor = getString(formData, "autor").trim();
-    const usuario = getString(formData, "usuario").trim();
+    const usuario = getString(formData, "usu").trim();
     const obra =
       formData.get("obra");
     const fecha = getString(formData, "fecha").trim();
@@ -63,24 +65,3 @@ async function guarda(evt) {
     muestraError(e);
   }
 }
-
-/** Muestra los datos del usuario
- * o manda a iniciar sesión en
- * caso de que no haya empezado.
- * @param {import(
-    "../lib/tiposFire").
-    User} usuario modelo con las
- *    características del usuario
- *    o null si no ha iniciado
- *    sesión. */
-    async function
-    muestraCorreo(usuario) {
-    if (usuario && usuario.email) {
-      // Usuario aceptado.
-      forma.usuario.value =
-        usuario.email || "";
-    } else {
-      // No ha iniciado sesión.
-      iniciaSesión();
-    }
-  }
