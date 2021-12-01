@@ -60,7 +60,7 @@ function htmlFila(doc) {
     `
     <div class="col">
           <div class="card h-100">
-            <img src="${img}" class="card-img-top" alt="...">
+            <img src="" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">${titulo}</h5>
               <p class="card-text"><b>Autor:</b>${autor}</p>
