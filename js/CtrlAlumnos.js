@@ -79,7 +79,7 @@ function htmlFila(doc) {
       <a class="fila" href=
   "alumno.html?${parámetros}">
         <strong class="primario">
-          ${titulo} ${autor}
+          Título: ${titulo} Autor: ${autor}
         </strong>
       </a>
      
