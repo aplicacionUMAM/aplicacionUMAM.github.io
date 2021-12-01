@@ -57,19 +57,11 @@ function htmlFila(doc) {
     new URLSearchParams();
   parámetros.append("id", doc.id);
   return ( /* html */
-    `
-    <div class="col">
-          <div class="card h-100">
-            <img src="" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">${titulo}</h5>
-              <p class="card-text"><b>Autor:</b>${autor}</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Fecha: </small>
-            </div>
-          </div>
-        </div>`);
+    `<li>
+        <strong class="primario">
+          Título: ${titulo} Autor: ${autor}
+        </strong>
+    </li>`);
 }
 
 /** @param {Error} e */
