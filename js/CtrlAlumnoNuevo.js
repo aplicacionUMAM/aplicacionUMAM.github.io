@@ -46,7 +46,6 @@ async function guarda(evt) {
       formData.get("obra");
     const fecha = getString(formData, "fecha").trim();
     const nombre = fecha + usu;
-    await subeStorage(nombre, obra);
     if (archivo instanceof File &&
       archivo.size > 0) {
       await storage.
