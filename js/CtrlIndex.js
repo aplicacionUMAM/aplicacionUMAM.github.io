@@ -1,6 +1,5 @@
 // @ts-nocheck
 import {
-  getAuth,
   getFirestore
 } from "../lib/fabrica.js";
 import {
@@ -16,10 +15,6 @@ const lista = document.
   querySelector("#lista");
 const daoAlumno = firestore.
   collection("Alumno");
-
-getAuth().
-  onAuthStateChanged(
-    protege, muestraError);
 
 /** @param {import(
     "../lib/tiposFire.js").User}
