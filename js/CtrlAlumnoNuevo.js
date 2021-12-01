@@ -13,6 +13,9 @@ import {
 import {
   tieneRol
 } from "./seguridad.js";
+import {
+  getStorage
+} from "./fabrica.js";
 const storage = getStorage();
 const daoAlumno =
   getFirestore().
@@ -21,6 +24,7 @@ const daoAlumno =
 const forma = document["forma"];
 getAuth().onAuthStateChanged(
   protege, muestraError);
+
 /** @param {import(
     "../lib/tiposFire.js").User}
     usuario */
@@ -45,7 +49,8 @@ async function guarda(evt) {
     const obra =
       formData.get("obra");
     const fecha = getString(formData, "fecha").trim();
-    const nombre = fecha + usu;
+    const f = new Date();
+    const nombre = f.getDate() + f.getDay + f.getFullYear + f.getMinutes + f.getTime + usu;
     if (obra instanceof File &&
       obra.size > 0) {
       await storage.
