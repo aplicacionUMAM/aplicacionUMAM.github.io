@@ -3,8 +3,12 @@ import {
   getFirestore
 } from "../lib/fabrica.js";
 import {
-  getString,
-  muestraError
+  eliminaStorage,
+  urlStorage,
+  subeStorage
+} from "../lib/storage.js";
+import {
+  muestraError, cod, getForánea, muestraError
 } from "../lib/util.js";
 import {
   muestraAlumnos
@@ -12,17 +16,22 @@ import {
 import {
   tieneRol
 } from "./seguridad.js";
+import {
+  checksRoles,
+  guardaUsuario
+} from "./usuarios.js";
 
-const daoAlumno =
-  getFirestore().
-    collection("Alumno");
 const params =
   new URL(location.href).
     searchParams;
 const id = params.get("id");
+const daoAlumno = getFirestore().
+  collection("Alumno");
 /** @type {HTMLFormElement} */
 const forma = document["forma"];
-
+const img = document.
+  querySelector("img");
+/** @type {HTMLUListElement} */
 getAuth().onAuthStateChanged(
   protege, muestraError);
 
@@ -31,38 +40,29 @@ getAuth().onAuthStateChanged(
     usuario */
 async function protege(usuario) {
   if (tieneRol(usuario,
-    ["Administrador"])) {
+    ["Artista"])) {
     busca();
   }
 }
 
-/** Busca y muestra los datos que
- * corresponden al id recibido. */
 async function busca() {
   try {
-    const doc =
-      await daoAlumno.
-        doc(id).
-        get();
+    const doc = await daoAlumno.
+      doc(id).
+      get();
     if (doc.exists) {
-      /**
-       * @type {
-          import("./tipos.js").
-                  Alumno} */
       const data = doc.data();
-      forma.matricula.value = data.matricula;
-      forma.nombre.value = data.nombre || "";
-      forma.telefono.value = data.telefono || "";
-      forma.grupo.value = data.grupo || "";
+      forma.cue.value = id || "";
+      forma.avatarusu.src =
+        await urlStorage(id);
+      forma.titulo.value = data.titulo || "";
+      forma.autor.value = data.autor || "";
       forma.fecha.value = data.fecha || "";
       forma.addEventListener(
         "submit", guarda);
       forma.eliminar.
         addEventListener(
           "click", elimina);
-    } else {
-      throw new Error(
-        "No se encontró.");
     }
   } catch (e) {
     muestraError(e);
@@ -76,21 +76,19 @@ async function guarda(evt) {
     evt.preventDefault();
     const formData =
       new FormData(forma);
-    const matricula = getString(
-        formData, "matricula").trim();  
-    const nombre = getString(formData, "nombre").trim();
-    const telefono = getString(formData, "telefono").trim();
-    const grupo = getString(formData, "grupo").trim();
+    const titulo = getString(formData, "titulo").trim();
+    const autor = getString(formData, "autor").trim();
     const fecha = getString(formData, "fecha").trim();
+    const obra =
+      formData.get("obra");
+    await subeStorage(id, obra);
     /**
      * @type {
         import("./tipos.js").
                 Alumno} */
     const modelo = {
-      matricula, 
-      nombre,
-      telefono,
-      grupo,
+      titulo, 
+      autor,
       fecha
     };
     await daoAlumno.
@@ -109,10 +107,10 @@ async function elimina() {
       await daoAlumno.
         doc(id).
         delete();
+      await eliminaStorage(id);
       muestraAlumnos();
     }
   } catch (e) {
     muestraError(e);
   }
 }
-
