@@ -38,7 +38,7 @@
     <form name="forma">
       
       <header>
-        <h1>Alumno</h1>
+        <h1>Obra</h1>
         <div class="herramientas">
           <a href="alumnos.html">
             Cancelar</a>
@@ -50,37 +50,45 @@
         </div>
       </header>
       <p>
+        <input type="hidden" name="cue" readonly>
+      </p>
+      <p>
         <label>
-          Matricula
-          <input name="matricula"
+          Título
+          <input name="titulo"
             type="text" required>
         </label>
       </p>
       <p>
         <label>
-          Nombre
-          <input name="nombre"
+          Autor
+          <input name="autor"
             type="text" required>
         </label>
       </p>
+      <figure id="figure">
+        <img id="avatarusu" name="avatarusu" alt="Falta el imagen">
+      </figure>
       <p>
         <label>
-          Teléfono
-          <input name="telefono"
-            type="text" required>
-        </label>
-      </p>
-      <p>
-        <label>
-          Grupo
-          <input name="grupo"
-            type="text" required>
+          Obra
+          <input name="obra"
+            type="file"
+            accept=".png,.jpg,.jpeg,.gif">
         </label>
       </p>
       <p>
         <label>
           Fecha
-          <input name="fecha" type="date" required>
+          <input name="fecha"
+            type="date" required>
+        </label>
+      </p>
+      <p>
+        <label>
+          Usuario
+          <input name="usu"
+            type="text" readonly required>
         </label>
       </p>
       
@@ -94,4 +102,3 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
-
