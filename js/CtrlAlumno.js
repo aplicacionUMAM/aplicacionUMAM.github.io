@@ -8,7 +8,7 @@ import {
   subeStorage
 } from "../lib/storage.js";
 import {
-  muestraError, cod, getForánea, muestraError
+  muestraError, cod, getForánea
 } from "../lib/util.js";
 import {
   muestraAlumnos
